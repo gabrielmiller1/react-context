@@ -1,15 +1,16 @@
-import { createContext  } from 'react';
-import { useState, useEffect } from 'react';
+import { createContext } from 'react';
+import { useState } from 'react';
 
 export const UserContext = createContext();
+UserContext.displayName = "User";
 
-const [name, setName] = useState('');
-const [balance, setBalance] = useState(0)
+export const UserProvider = ({ children }) => {
+    const [name, setName] = useState('');
+    const [balance, setBalance] = useState(0)
 
-export const UserPorvider = () => {
     return (
-        <UserContext.Provider value={}>
-
+        <UserContext.Provider value={{ name, setName, balance, setBalance }}>
+            {children}
         </UserContext.Provider>
     )
 }
